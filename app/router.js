@@ -1,5 +1,5 @@
 var RouteRecognizer = require("github:tildeio/route-recognizer").default;
-var _ = require("underscore");
+var _ = require("github:lodash/lodash-amd");
 
 var HashLocation = function (options) {
   this.location = window.location;
@@ -237,6 +237,13 @@ Router.prototype = {
     split_params.queryParams = params;
     return this.recognizer.generate(route_name, split_params);
   },
+  addHandlers: function(handlers) {
+    debugger;
+    _.merge(this.handlers, handlers);
+  },
+  addHandler: function(name, handler) {
+    this.handlers[name] = handler;
+  }
 }
 
 module.exports = Router;

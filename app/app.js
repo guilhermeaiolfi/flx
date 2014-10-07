@@ -12,9 +12,7 @@ app.router.map(function(match) {
 
 
 var interval = null;
-var event_dispatcher = Ember.EventDispatcher.create();
-event_dispatcher.setup();
-var container = new Ember.Container();
+
 var Controller = Ember.ObjectController.extend({
   actions: {
     navegate: function () {
@@ -40,7 +38,6 @@ var Controller = Ember.ObjectController.extend({
   }
 });
 
-Ember.Handlebars.registerHelper('action', Ember.Handlebars.helpers['action']);
 
 /**
   use {{action "edit" target="view" to get "from view"}}
@@ -86,7 +83,7 @@ var PostEditView = Ember.View.extend({
   }
 });
 
-var handlers = {
+app.router.addHandlers({
   "post": {
     enter: function(ctx) {
       console.log("post enter");
@@ -125,13 +122,10 @@ var handlers = {
     view: PostEditView,
     controller: null
   }
-};
+});
 
-app.router.getHandler = function(name) {
-  return handlers[name];
-};
 
 app.router.start();
 console.log(app.router.generate("post.edit", { id: 1, ok: 'nice' }));
-//app.router.navegate("posts/12");
+app.router.navegate("/posts/12");
 

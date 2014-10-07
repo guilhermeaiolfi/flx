@@ -2,7 +2,7 @@ System.config({
   "paths": {
     "github:*": "jspm_packages/github/*.js",
     "npm:*": "jspm_packages/npm/*.js",
-    "director": "jspm_packages/github/flatiron/director@1.2.2/build/director.min.js",
+    "lodash": "jspm_packages/npm/lodash-node@2.4.1/modern/index.js",
     "*": "*.js"
   }
 });
@@ -14,9 +14,7 @@ System.config({
       "jquery": "github:components/jquery@^2.1.1",
       "handlebars.js": "github:components/handlebars.js@^1.3.0"
     },
-    "github:flatiron/director": "github:flatiron/director@^1.2.2",
     "github:tildeio/route-recognizer": "github:tildeio/route-recognizer@^0.1.1",
-    "lodash": "npm:lodash-node@^2.4.1",
     "npm:Base64@0.2.1": {},
     "npm:inherits@2.0.1": {},
     "npm:ieee754@1.1.4": {},
@@ -31,7 +29,8 @@ System.config({
     "npm:lodash-node@2.4.1": {},
     "npm:lodash-node": "npm:lodash-node@^2.4.1",
     "underscore": "npm:underscore@^1.7.0",
-    "npm:underscore@1.7.0": {}
+    "npm:underscore@1.7.0": {},
+    "github:lodash/lodash-amd": "github:lodash/lodash-amd@^2.4.1"
   }
 });
 
@@ -49,7 +48,8 @@ System.config({
     "github:systemjs/plugin-json": "master",
     "npm:ieee754": "1.1.4",
     "npm:base64-js": "0.0.7",
-    "npm:underscore": "1.7.0"
+    "npm:underscore": "1.7.0",
+    "github:lodash/lodash-amd": "2.4.1"
   }
 });
 

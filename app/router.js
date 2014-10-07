@@ -218,7 +218,7 @@ Router.prototype = {
     this.running = false;
   },
   updateURL: function(url) {
-    this.location.updateURL(url);
+    this.location.setURL(url);
   },
   getHandler: function(name) {
     return this.handlers[name];

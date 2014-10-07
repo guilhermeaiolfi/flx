@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ember Rewrite</title>
+  <script src="jspm_packages/system@0.8.js"></script>
+  <!--<script src="build/app.js"></script>-->
+  <script src="config.js"></script>
+  <script>
+    System.import('app/app')
+    // we add this since promises suppress all errors
+    .catch(console.error.bind(console));
+  </script>
+</head>
+<body>
+
+</body>
+</html>

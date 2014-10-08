@@ -1,5 +1,6 @@
 System.config({
   "paths": {
+		"flx/*": "lib/*.js",
     "github:*": "jspm_packages/github/*.js",
     "npm:*": "jspm_packages/npm/*.js",
     "lodash": "jspm_packages/npm/lodash-node@2.4.1/modern/index.js",

@@ -2,11 +2,7 @@
   "jspm": {
     "dependencies": {
       "ember": "^1.7.0",
-      "github:flatiron/director": "^1.2.2",
       "github:tildeio/route-recognizer": "^0.1.1",
-      "lodash": "^2.4.1",
-      "npm:lodash-node": "^2.4.1",
-      "underscore": "^1.7.0",
       "github:lodash/lodash-amd": "^2.4.1"
     }
   }

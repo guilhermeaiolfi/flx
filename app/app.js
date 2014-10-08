@@ -1,7 +1,9 @@
 var Ember = require('ember');
-var Application = require("app/Application");
+var Application = require("flx/Application");
 
-var app = Application.create({});
+var app = Application.create({
+  rootElement: '.app1'
+});
 
 app.router.map(function(match) {
   match("/posts").to("post",function(match) {
@@ -9,7 +11,6 @@ app.router.map(function(match) {
     match("/:id").to("post.edit");
   });
 });
-
 
 var interval = null;
 
@@ -47,17 +48,24 @@ var PostView = Ember.View.extend({
   template: Ember.Handlebars.compile("<a {{action \"navegate\"}}>go to test</a><br /><a {{action \"something\"}}>go to something</a><br /><h1 {{action \"read\" target=\"view\"}}>Oba</h1><div class=\"container\">{{outlet}}</div>"),
   actions: {
     read: function() {
+      debugger;
       console.log("from view");
     }
   }
 });
 
 var PostIndexView = Ember.View.extend({
-  template: Ember.Handlebars.compile("Post Index, {{name}} : {{mother.name}}"),
+  template: Ember.Handlebars.compile("<a {{action \"read\" target=\"view\"}}>Post</a> Index, {{name}} : {{mother.name}}"),
   context: {
     name: "Maria",
     mother: {
       name: "Mamãe"
+    }
+  },
+  actions: {
+    read: function() {
+      debugger;
+      console.log("from view");
     }
   },
   didInsertElement: function() {
@@ -78,7 +86,7 @@ var PostEditView = Ember.View.extend({
   },
   actions: {
     back: function() {
-      app.router.navegate('/posts')
+      app.router.navegate('/posts');
     }
   }
 });
@@ -90,7 +98,7 @@ app.router.addHandlers({
     },
     render: function(ctx) {
       console.log("post render");
-      this.render("post", PostView, ctx);
+      this.adapter.render("post", PostView, ctx);
     },
     exit: function(ctx) {
       console.log("post exiting");
@@ -101,7 +109,15 @@ app.router.addHandlers({
   "post.index": function(ctx) {
     if (ctx.event == "render") {
       console.log("post.index. render");
-      this.render("post.index", PostIndexView, ctx);
+      var lazy_load_class = "var PostIndexView = Ember.View.extend({ " +
+          "template: Ember.Handlebars.compile(\"<a {{action \\\"ok\\\" target=\\\"view\\\"}}>ok</a>\"), " +
+          "actions: { " +
+            "ok: function() { " +
+              "debugger; " +
+            "}" +
+          "}" +
+        "});";
+      this.adapter.render("post.index", PostIndexView, ctx);
     }
     else if (ctx.event == "render") {
       console.log("leaving post.index");
@@ -114,7 +130,7 @@ app.router.addHandlers({
     },
     render: function(ctx) {
       console.log("post.edit render");
-     this.render("post.edit", PostEditView, ctx);
+     this.adapter.render("post.edit", PostEditView, ctx);
     },
     exit: function() {
       console.log("post.edit exiting");
@@ -124,8 +140,6 @@ app.router.addHandlers({
   }
 });
 
-
 app.router.start();
 console.log(app.router.generate("post.edit", { id: 1, ok: 'nice' }));
 app.router.navegate("/posts/12");
-

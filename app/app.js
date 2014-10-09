@@ -1,8 +1,10 @@
 var Ember = require('ember');
 var Application = require("flx/Application");
+var EmberLayoutManager = require("flx/layout/managers/ember_layout_manager");
 
 var app = Application.create({
-  rootElement: '.app1'
+  rootElement: '.app1',
+	lm: new EmberLayoutManager()
 });
 
 app.router.map(function(match) {
@@ -69,10 +71,10 @@ var PostIndexView = Ember.View.extend({
     }
   },
   didInsertElement: function() {
-    console.log("inserted");
+    //console.log("inserted");
   },
   willDestroyElement: function() {
-    console.log("destroied");
+    //console.log("destroied");
   }
 });
 
@@ -91,55 +93,56 @@ var PostEditView = Ember.View.extend({
   }
 });
 
+var LoadingView = Ember.View.extend({
+	template: function() { return "Loading..."; }
+});
+
 app.router.addHandlers({
   "post": {
-    enter: function(ctx) {
-      console.log("post enter");
-    },
-    render: function(ctx) {
-      console.log("post render");
-      this.adapter.render("post", PostView, ctx);
-    },
-    exit: function(ctx) {
-      console.log("post exiting");
-    },
-    view: PostIndexView,
+		enter: function(ctx) {
+			var lm = this.lm;
+			lm.render("PostLoading", LoadingView, ctx);
+			var transition = ctx.transition;
+			setTimeout(function() {
+				lm.destroyView('PostLoading');
+				var view = lm.enter(ctx);
+				transition.next(ctx);
+			}, 5000);
+		},
+    view: PostView,
     controller: Controller
   },
   "post.index": function(ctx) {
-    if (ctx.event == "render") {
-      console.log("post.index. render");
-      var lazy_load_class = "var PostIndexView = Ember.View.extend({ " +
-          "template: Ember.Handlebars.compile(\"<a {{action \\\"ok\\\" target=\\\"view\\\"}}>ok</a>\"), " +
-          "actions: { " +
-            "ok: function() { " +
-              "debugger; " +
-            "}" +
-          "}" +
-        "});";
-      this.adapter.render("post.index", PostIndexView, ctx);
+		if (ctx.event == "enter") {
+			console.log("[enter] post.index");
+//      console.log("post.index. render");
+//      var lazy_load_class = "var PostIndexView = Ember.View.extend({ " +
+//          "template: Ember.Handlebars.compile(\"<a {{action \\\"ok\\\" target=\\\"view\\\"}}>ok</a>\"), " +
+//          "actions: { " +
+//            "ok: function() { " +
+//              "debugger; " +
+//            "}" +
+//          "}" +
+//        "});";
+			var route = ctx.transition.getPreviousRoute();
+			if (route) {
+				ctx.parentViewName = route.name;
+			}
+      this.lm.render("post.index", PostIndexView, ctx);
+			ctx.transition.next(ctx);
     }
-    else if (ctx.event == "render") {
-      console.log("leaving post.index");
+    else if (ctx.event == "exit") {
+      console.log("[leave] post.index");
+			this.lm.destroyView('post.index');
+			ctx.transition.next(ctx);
     }
   },
   "post.edit": {
-    enter: function(ctx) {
-      ctx.view.set('context.params.id', ctx.route.params.id);
-      console.log("post.index. enter");
-    },
-    render: function(ctx) {
-      console.log("post.edit render");
-     this.adapter.render("post.edit", PostEditView, ctx);
-    },
-    exit: function() {
-      console.log("post.edit exiting");
-    },
     view: PostEditView,
     controller: null
   }
 });
 
 app.router.start();
-console.log(app.router.generate("post.edit", { id: 1, ok: 'nice' }));
-app.router.navegate("/posts/12");
+//console.log(app.router.generate("post.edit", { id: 1, ok: 'nice' }));
+//app.router.navegate("/posts/12");

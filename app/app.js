@@ -1,6 +1,8 @@
 var Ember = require('ember');
 var Application = require("flx/Application");
 var EmberLayoutManager = require("flx/layout/managers/ember_layout_manager");
+var post_edit_tpl = require("app/templates/post/edit.hbs!text");
+var post_index_tpl = require("app/templates/post/index.hbs!text");
 
 var app = Application.create({
   rootElement: '.app1',
@@ -57,7 +59,7 @@ var PostView = Ember.View.extend({
 });
 
 var PostIndexView = Ember.View.extend({
-  template: Ember.Handlebars.compile("<a {{action \"read\" target=\"view\"}}>Post</a> Index, {{name}} : {{mother.name}}"),
+  template: Ember.Handlebars.compile(post_index_tpl),
   context: {
     name: "Maria",
     mother: {
@@ -79,7 +81,7 @@ var PostIndexView = Ember.View.extend({
 });
 
 var PostEditView = Ember.View.extend({
-  template: Ember.Handlebars.compile("[{{params.id}}] View Post, {{name}} <br /> <br /><a {{action \"back\" target=\"view\"}}>go to index</a>"),
+  template: Ember.Handlebars.compile(post_edit_tpl),
   context: {
     name: "Guilherme",
     params: {
@@ -87,8 +89,8 @@ var PostEditView = Ember.View.extend({
     }
   },
   actions: {
-    back: function() {
-      app.router.navegate('/posts');
+    goAction: function() {
+      app.router.navegate(app.router.generate("post.index"));
     }
   }
 });
@@ -107,7 +109,7 @@ app.router.addHandlers({
 				lm.destroyView('PostLoading');
 				var view = lm.enter(ctx);
 				transition.next(ctx);
-			}, 5000);
+			}, 50);
 		},
     view: PostView,
     controller: Controller

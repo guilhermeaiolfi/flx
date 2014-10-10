@@ -2,7 +2,7 @@ var Ember = require('ember');
 var Application = require("app/Application");
 
 var app2 = Application.create({
-  rootElement: '.app2'
+	lm: new LayoutManager({ rootElement: '.app2' })
 });
 
 app2.router.map(function(match) {

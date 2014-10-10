@@ -5,8 +5,7 @@ var post_edit_tpl = require("app/templates/post/edit.hbs!text");
 var post_index_tpl = require("app/templates/post/index.hbs!text");
 
 var app = Application.create({
-  rootElement: '.app1',
-	lm: new EmberLayoutManager()
+	lm: new EmberLayoutManager({ rootElement: '.app1' })
 });
 
 app.router.map(function(match) {
@@ -90,7 +89,7 @@ var PostEditView = Ember.View.extend({
   },
   actions: {
     goAction: function() {
-      app.router.navegate(app.router.generate("post.index"));
+      app.router.go(app.router.generate("post.index"));
     }
   }
 });

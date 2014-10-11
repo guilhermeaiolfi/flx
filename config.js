@@ -10,7 +10,7 @@ System.config({
 
 System.config({
   "map": {
-    "ember": "github:components/ember@^1.7.0/ember.src",
+    "ember": "github:components/ember@^1.8.0-beta.4/ember.src",
     "github:components/ember@1.7.0": {
       "jquery": "github:components/jquery@^2.1.1",
       "handlebars.js": "github:components/handlebars.js@^1.3.0"
@@ -32,13 +32,17 @@ System.config({
     "underscore": "npm:underscore@^1.7.0",
     "npm:underscore@1.7.0": {},
     "github:lodash/lodash-amd": "github:lodash/lodash-amd@^2.4.1",
-    "text": "github:systemjs/plugin-text@^0.0.2"
+    "text": "github:systemjs/plugin-text@^0.0.2",
+    "github:components/ember@1.8.0-beta.4": {
+      "jquery": "github:components/jquery@^2.1.1",
+      "handlebars.js": "github:components/handlebars.js@^1.3.0"
+    }
   }
 });
 
 System.config({
   "versions": {
-    "github:components/ember": "1.7.0",
+    "github:components/ember": "1.8.0-beta.4",
     "github:components/handlebars.js": "1.3.0",
     "github:components/jquery": "2.1.1",
     "github:flatiron/director": "1.2.2",

@@ -19,8 +19,6 @@ app.router.map(function(match) {
 	});
 });
 
-var interval = null;
-
 var Controller = Ember.ObjectController.extend({
   actions: {
     navegate: function () {
@@ -41,7 +39,7 @@ var LoadingView = Ember.View.extend({
 
 Ember.TEMPLATES['_menu'] = Ember.Handlebars.compile('<ul class="menu"><li>Menu item 1</li><li>Menu item 2</li></ul>');
 var ApplicationView = Ember.View.extend({
-	template: Ember.Handlebars.compile("/|{{partial \"menu\"}}|\\\{{outlet}}")
+	template: Ember.Handlebars.compile("{{partial \"menu\"}}{{outlet}}")
 });
 
 app.router.addHandlers({

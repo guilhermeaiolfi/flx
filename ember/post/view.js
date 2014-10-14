@@ -8,7 +8,6 @@ var app = require("app/app");
 
 module.exports =  Ember.View.extend({
   //controller: Controller.create(),
-	container: app.container,
   template: Ember.Handlebars.compile(template),
   actions: {
     read: function() {

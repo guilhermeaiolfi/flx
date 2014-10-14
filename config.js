@@ -11,10 +11,6 @@ System.config({
 System.config({
   "map": {
     "ember": "github:components/ember@^1.8.0-beta.4/ember.src",
-    "github:components/ember@1.7.0": {
-      "jquery": "github:components/jquery@^2.1.1",
-      "handlebars.js": "github:components/handlebars.js@^1.3.0"
-    },
     "github:tildeio/route-recognizer": "github:tildeio/route-recognizer@^0.1.1",
     "npm:Base64@0.2.1": {},
     "npm:inherits@2.0.1": {},
@@ -36,7 +32,8 @@ System.config({
     "github:components/ember@1.8.0-beta.4": {
       "jquery": "github:components/jquery@^2.1.1",
       "handlebars.js": "github:components/handlebars.js@^1.3.0"
-    }
+    },
+    "github:ractivejs/ractive": "github:ractivejs/ractive@^0.6.0"
   }
 });
 
@@ -56,7 +53,8 @@ System.config({
     "npm:base64-js": "0.0.7",
     "npm:underscore": "1.7.0",
     "github:lodash/lodash-amd": "2.4.1",
-    "github:systemjs/plugin-text": "0.0.2"
+    "github:systemjs/plugin-text": "0.0.2",
+    "github:ractivejs/ractive": "0.6.0"
   }
 });
 

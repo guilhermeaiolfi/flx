@@ -4,21 +4,15 @@ var app = require("app/app");
 
 module.exports = Ember.View.extend({
   template: Ember.Handlebars.compile(post_index_tpl),
-  context: {
-    name: "Maria",
-    mother: {
-      name: "Mamãe"
-    }
-  },
   actions: {
     read: function() {
-      debugger;
       console.log("from view");
     }
   },
 	_init: function() {
 		var names = [{ name: 'Guilherme Aiolfi' }, { name: 'John Snow' }];
-		this.set('context.items', names);
+		var controller = this.get('controller');
+		controller.set('items', names);
 	}.on('init'),
   didInsertElement: function() {
     //console.log("inserted");

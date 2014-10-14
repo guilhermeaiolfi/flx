@@ -1,9 +1,9 @@
 var Ember = require('ember');
 var Application = require("flx/Application");
 var EmberLayoutManager = require("flx/layout/managers/ember_layout_manager");
-var PostEditView = require("app/post/edit/view");
-var PostIndexView = require("app/post/index/view");
-var PostView = require("app/post/view");
+var PostEditView = require("samples/ember/post/edit/view");
+var PostIndexView = require("samples/ember/post/index/view");
+var PostView = require("samples/ember/post/view");
 
 
 var app = Application.create({
@@ -39,7 +39,7 @@ var LoadingView = Ember.View.extend({
 
 Ember.TEMPLATES['_menu'] = Ember.Handlebars.compile('<ul class="menu"><li>Menu item 1</li><li>Menu item 2</li></ul>');
 var ApplicationView = Ember.View.extend({
-	template: Ember.Handlebars.compile("{{partial \"menu\"}}{{outlet}}")
+	template: Ember.Handlebars.compile("{{outlet}}")
 });
 
 app.router.addHandlers({
@@ -47,21 +47,23 @@ app.router.addHandlers({
 		view: ApplicationView
 	},
   "post": {
-		enter: function(ctx) {
-			var lm = this.lm;
-			lm.render("PostLoading", LoadingView, ctx);
-			var transition = ctx.transition;
-			setTimeout(function() {
-				lm.destroyView('PostLoading');
-				var view = lm.enter(ctx);
-				view.set('context.controller', Controller.create());
-				transition.next(ctx);
-			}, 500);
-		},
+//		enter: function(ctx) {
+//			var lm = this.lm;
+//			lm.render("PostLoading", LoadingView, ctx);
+//			var transition = ctx.transition;
+//			setTimeout(function() {
+//				lm.destroyView('PostLoading');
+//				var view = lm.enter(ctx);
+//				view.set('context.controller', Controller.create());
+//				transition.next(ctx);
+//			}, 500);
+//		},
     view: PostView,
     controller: Controller
   },
-  "post.index": function(ctx) {
+  "post.index": {
+		view: PostIndexView
+	},/*function(ctx) {
 		if (ctx.event == "enter") {
 			console.log("[enter] post.index");
 //      console.log("post.index. render");
@@ -85,7 +87,7 @@ app.router.addHandlers({
 			this.lm.destroyView('post.index');
 			ctx.transition.next(ctx);
     }
-  },
+  }*/
   "post.edit": {
     view: PostEditView,
     controller: null

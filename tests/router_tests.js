@@ -1,8 +1,8 @@
 var Ember = require('ember');
 var Application = require("flx/Application");
 var EmberLayoutManager = require("flx/layout/managers/ember_layout_manager");
-var post_edit_tpl = require("app/templates/post/edit.hbs!text");
-var post_index_tpl = require("app/templates/post/index.hbs!text");
+var post_edit_tpl = require("samples/ember/post/edit/template.hbs!text");
+var post_index_tpl = require("samples/ember/post/index/template.hbs!text");
 
 var app = null;
 QUnit.module("Router", {

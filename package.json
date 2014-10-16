@@ -4,8 +4,9 @@
       "github:tildeio/route-recognizer": "^0.1.1",
       "github:lodash/lodash-amd": "^2.4.1",
       "text": "^0.0.2",
+      "github:ractivejs/ractive": "^0.6.0",
       "ember": "^1.8.0-beta.4",
-      "github:ractivejs/ractive": "^0.6.0"
+      "jquery": "^2.1.1"
     }
   }
 }

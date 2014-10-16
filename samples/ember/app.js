@@ -1,6 +1,6 @@
 var Ember = require('ember');
 var Application = require("flx/Application");
-var EmberLayoutManager = require("flx/layout/managers/ember_layout_manager");
+var EmberLayoutManager = require("flx/adapters/ember/layout_manager");
 
 var app = Application.create({
 	lm: new EmberLayoutManager({ rootElement: '.app1' })

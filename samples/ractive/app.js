@@ -1,6 +1,6 @@
 var Ember = require('ember');
 var Application = require("flx/Application");
-var RactiveLayoutManager = require("flx/layout/managers/ractive_layout_manager");
+var RactiveLayoutManager = require("flx/adapters/ractive/layout_manager");
 var PostEditView = require("samples/ractive/post/edit/view");
 var PostIndexView = require("samples/ractive/post/index/view");
 var PostView = require("samples/ractive/post/view");

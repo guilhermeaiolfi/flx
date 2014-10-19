@@ -1,5 +1,5 @@
 var Ember = require('ember');
-var EmberLayoutManager = require("flx/layout/managers/ember_layout_manager");
+var EmberLayoutManager = require("flx/adapters/ember/layout_manager");
 
 var app = null;
 QUnit.module("Router", {

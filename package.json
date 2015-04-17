@@ -1,12 +1,13 @@
 {
   "jspm": {
+    "name": "flx",
+    "main": "main.js",
     "dependencies": {
-      "github:tildeio/route-recognizer": "^0.1.1",
-      "github:lodash/lodash-amd": "^2.4.1",
-      "text": "^0.0.2",
-      "github:ractivejs/ractive": "^0.6.0",
-      "ember": "^1.8.0-beta.4",
-      "jquery": "^2.1.1"
+      "jquery": "github:components/jquery@^2.1.1",
+      "lodash": "npm:lodash@^3.7.0",
+      "ractive": "github:ractivejs/ractive@^0.7.2",
+      "route-recognizer": "github:tildeio/route-recognizer@^0.1.1",
+      "text": "github:systemjs/plugin-text@^0.0.2"
     }
   }
 }

@@ -1,13 +1,16 @@
 {
   "jspm": {
-    "name": "flx",
     "main": "main.js",
     "dependencies": {
-      "jquery": "github:components/jquery@^2.1.1",
-      "lodash": "npm:lodash@^3.7.0",
-      "ractive": "github:ractivejs/ractive@^0.7.2",
-      "route-recognizer": "github:tildeio/route-recognizer@^0.1.1",
-      "text": "github:systemjs/plugin-text@^0.0.2"
+      "jquery": "github:components/jquery@^2.x",
+      "lodash": "npm:lodash@^4.x",
+      "ractive": "github:ractivejs/ractive@^0.7.x",
+      "route-recognizer": "github:tildeio/route-recognizer@0.1.x"
+    },
+    "devDependencies": {
+      "text": "github:systemjs/plugin-text@^0.0.8",
+      "traceur": "github:jmcriffey/bower-traceur@0.0.93",
+      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.93"
     }
   }
 }

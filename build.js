@@ -1,17 +1,14 @@
-var path = require("path");
 var Builder = require('systemjs-builder');
 
-var builder = new Builder({
-  //baseURL: 'file:' + path.resolve('flx'),
-});
+var builder = new Builder();
 
-builder.loadConfig('./config.js');
+builder.loadConfigSync('config.js');
 
-builder.build('main - jquery - ractive - lodash', 'dist/flx.js').then(function() {
+builder.bundle('main.js - jquery - ractive - lodash', 'dist/flx.js').then(function() {
   console.log('Build complete');
 });
 
-builder.buildSFX('main + lib/* + route-recognizer', 'dist/flx-sfx.js').then(function() {
+builder.buildStatic('main.js + lib/* + route-recognizer - jquery - ractive - lodash', 'dist/flx-sfx.js').then(function() {
   console.log('Build complete');
 })
 .catch(function(err) {

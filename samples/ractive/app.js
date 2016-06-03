@@ -1,14 +1,16 @@
-var Application = require("flx/Application");
-var RactiveLayoutManager = require("flx/adapters/ractive/layout_manager");
-var PostEditView = require("samples/ractive/post/edit/view");
-var PostIndexView = require("samples/ractive/post/index/view");
-var PostView = require("samples/ractive/post/view");
+var Application = require("lib/Application.js");
+var Ractive = require("ractive");
+var RactiveLayoutManager = require("lib/adapters/ractive/layout_manager.js");
+var PostEditView = require("samples/ractive/post/edit/view.js");
+var PostIndexView = require("samples/ractive/post/index/view.js");
+var PostView = require("samples/ractive/post/view.js");
 
 
 var app = window.app = new Application(new RactiveLayoutManager({ rootElement: '.app1' }));
 
 app.router.map(function(match) {
 	match("/").to("application", function(match) {
+    match("/").to("application");
 		match("/posts").to("post",function(match) {
 			match("/").to("post.index");
 			match("/:id").to("post.edit");
